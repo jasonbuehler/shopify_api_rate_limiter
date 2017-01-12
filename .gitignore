@@ -7,3 +7,6 @@ pkg
 *.lock
 .idea
 .dev/
+pkg/*
+*.gem
+.bundle
