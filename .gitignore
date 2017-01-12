@@ -1,0 +1,9 @@
+.DS_Store
+coverage
+rdoc
+doc
+pkg
+.ruby-version
+*.lock
+.idea
+.dev/
