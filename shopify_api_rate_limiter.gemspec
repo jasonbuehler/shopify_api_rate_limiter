@@ -5,16 +5,18 @@ Gem::Specification.new do |s|
   s.name        = 'shopify_api_rate_limiter'
   s.version     = ShopifyApiRateLimiter::VERSION 
   s.date        = '2017-01-11'
+  s.platform    = Gem::Platform::RUBY
   s.summary     = "Rate limits API requests to the Shopify API."
-  s.description = "A simple solution for rate limiting API requests to the Shopify API."
+  s.description = "A simple (hacky) solution for rate limiting API requests to the Shopify API."
   s.authors     = ["Jason Buehler"]
   s.email       = 'jason.c.buehler@gmail.com'
-  s.files       = ["lib/shopify_api_rate_limiter.rb", "lib/shopify_api_rate_limiter/throttled_connection.rb"]
-  s.homepage    =
-    'http://rubygems.org/gems/shopify_api_rate_limiter'
-  s.license       = 'MIT'
+  s.files       = `git ls-files`.split("\n")
 
-	s.add_runtime_dependency 'activeresource', '>= 3.0.0'
+  s.homepage    = 'http://rubygems.org/gems/shopify_api_rate_limiter'
+  s.license     = 'MIT'
+
+  s.add_runtime_dependency "shopify_api", ">= 1.2.2"
+  s.add_development_dependency "shopify_api", ">= 1.2.2"
 	s.add_development_dependency "bundler", ">= 1.0.0"
 	s.require_path = 'lib'
 end
