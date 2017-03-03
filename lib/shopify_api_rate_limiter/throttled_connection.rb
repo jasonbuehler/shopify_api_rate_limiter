@@ -18,6 +18,8 @@ module ShopifyApiRateLimiter
           else
             raise ex
           end
+        rescue ActiveResource::ClientError => e
+          return if e.response.code.to_s == '402'
         end
       else
         super
