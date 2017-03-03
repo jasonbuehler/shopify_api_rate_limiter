@@ -16,7 +16,6 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
 
   s.add_runtime_dependency "shopify_api", ">= 1.2.2"
-  s.add_development_dependency "shopify_api", ">= 1.2.2"
 	s.add_development_dependency "bundler", ">= 1.0.0"
 	s.require_path = 'lib'
 end
