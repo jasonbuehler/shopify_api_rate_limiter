@@ -10,8 +10,8 @@ module ShopifyApiRateLimiter
         end
         begin
           super
-        rescue ActiveResource::ConnectionError => ex
-          if ex.response.code.to_s == '429'
+        rescue ActiveResource::ClientError => ex
+          if ex&.response&.code&.to_s == '429'
             ShopifyApiRateLimiter.logger.info "Shopify returned 429 (Rate Limit Exceeded). Sleeping #{SHOPIFY_SLEEP_TIME}..."
             sleep(SHOPIFY_SLEEP_TIME)
             retry
