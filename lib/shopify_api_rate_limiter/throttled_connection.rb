@@ -1,4 +1,6 @@
 module ShopifyApiRateLimiter
+  class DailySkuLimitError < ActiveResource::ClientError ; end
+
   module ThrottledConnection
     SHOPIFY_SLEEP_TIME = 0.5
 
@@ -11,7 +13,9 @@ module ShopifyApiRateLimiter
         begin
           super
         rescue ActiveResource::ClientError => ex
-          if ex&.response&.code&.to_s == '429'
+          if ex.response.body == '{"errors":{"product":["Daily SKU limit reached. Please try again later."]}}'
+            raise ShopifyApiRateLimiter::DailySkuLimitError, "Daily Sku Limit Reached for Shopify Admin API"
+          elsif ex&.response&.code&.to_s == '429'
             ShopifyApiRateLimiter.logger.info "Shopify returned 429 (Rate Limit Exceeded). Sleeping #{SHOPIFY_SLEEP_TIME}..."
             sleep(SHOPIFY_SLEEP_TIME)
             retry
