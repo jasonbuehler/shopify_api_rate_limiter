@@ -1,5 +1,5 @@
 module ShopifyApiRateLimiter
-  class DailySkuLimitError < ActiveResource::ClientError ; end
+  class DailySkuLimitError < ::ActiveResource::ClientError ; end
 
   module ThrottledConnection
     SHOPIFY_SLEEP_TIME = 0.5
