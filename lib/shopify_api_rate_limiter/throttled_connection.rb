@@ -1,5 +1,5 @@
 module ShopifyApiRateLimiter
-  class DailySkuLimitError < ::ActiveResource::ClientError ; end
+  class DailySkuLimitError < StandardError ; end
 
   module ThrottledConnection
     SHOPIFY_SLEEP_TIME = 0.5
@@ -26,7 +26,7 @@ module ShopifyApiRateLimiter
       else
         super
       end
-    rescue ShopifyAPI::Limits::LimitUnavailable => limit_unavailable
+    rescue ShopifyAPI::Limits::LimitUnavailable => _ 
       # Either Shopify API stopped sending the limit header, or we're in a stubby test
       super
     end
