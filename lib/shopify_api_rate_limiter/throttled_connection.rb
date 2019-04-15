@@ -2,7 +2,7 @@ module ShopifyApiRateLimiter
   class DailySkuLimitError < StandardError ; end
 
   module ThrottledConnection
-    SHOPIFY_SLEEP_TIME = ENV['SHOPIFY_API_RATE_LIMITER_TIMEOUT'] || 0.5 
+    SHOPIFY_SLEEP_TIME = (ENV['SHOPIFY_API_RATE_LIMITER_TIMEOUT'] || 0.5).to_f
 
     def request(method, path, *arguments)
       if self === ShopifyAPI::Base.connection
